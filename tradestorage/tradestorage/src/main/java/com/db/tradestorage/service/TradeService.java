@@ -33,10 +33,10 @@ public class TradeService {
     private boolean validateVersion(Trade trade,Trade oldTrade) {
         //validation 1  During transmission if the
         // lower version is being received by the store it will reject the trade and throw an exception.
-        if(trade.getVersion() < oldTrade.getVersion()){
-            return false;
+        if(trade.getVersion() >= oldTrade.getVersion()){
+            return true;
         }
-        return true;
+        return false;
     }
 
     //2.	Store should not allow the trade which has less maturity date then today date
