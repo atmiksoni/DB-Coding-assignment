@@ -73,4 +73,17 @@ public class Trade {
     public void setExpiredFlag(String expiredFlag) {
         this.expiredFlag = expiredFlag;
     }
+
+    @Override
+    public String toString() {
+        return "Trade{" +
+                "tradeId='" + tradeId + '\'' +
+                ", version=" + version +
+                ", counterParty='" + counterParty + '\'' +
+                ", bookId='" + bookId + '\'' +
+                ", maturityDate=" + maturityDate +
+                ", createdDate=" + createdDate +
+                ", expiredFlag='" + expiredFlag + '\'' +
+                '}';
+    }
 }
