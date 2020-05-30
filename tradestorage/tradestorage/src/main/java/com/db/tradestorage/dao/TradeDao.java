@@ -13,4 +13,6 @@ public interface TradeDao {
     public void save(Trade trade);
 
     List<Trade> findAll();
+
+    Trade findTrade(String tradeId);
 }

@@ -19,7 +19,11 @@ public class TradeController {
 
     @PostMapping("/trade")
     public ResponseEntity<String> tradeValidateStore(@RequestBody Trade trade){
-        tradeService.persist(trade);
+       if(tradeService.isValid(trade)) {
+           tradeService.persist(trade);
+       }else{
+           return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
+       }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

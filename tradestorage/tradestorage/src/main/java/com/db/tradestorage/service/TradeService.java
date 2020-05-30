@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.DoubleToIntFunction;
 
 @Service
 public class TradeService {
@@ -13,7 +16,10 @@ public class TradeService {
     TradeDao tradeDao;
 
     public boolean isValid(Trade trade){
-
+        Trade exsitingTrade =tradeDao.findTrade(trade.getTradeId());
+        if(!Objects.isNull(exsitingTrade)){
+            return  false;
+        }
         return true;
     }
 

@@ -19,5 +19,8 @@ public class TradeDaoImpl implements TradeDao{
                  collect(Collectors.toList());
     }
 
-
+    @Override
+    public Trade findTrade(String tradeId) {
+        return tradeMap.get(tradeId);
+    }
 }
