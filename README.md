@@ -24,7 +24,6 @@ http://localhost:8080/trade
 "version":1,
 "counterParty":"counterParty1",  
 "bookId": "bookId", 
- "maturityDate": "2020-05-2020",
-  "createdDate": "2020-05-30",
+ "maturityDate": "2020-05-20",
 "expiredFlag":"Y"
 }

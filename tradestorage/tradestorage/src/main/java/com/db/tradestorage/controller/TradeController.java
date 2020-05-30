@@ -22,7 +22,7 @@ public class TradeController {
        if(tradeService.isValid(trade)) {
            tradeService.persist(trade);
        }else{
-           return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
+           return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
        }
         return ResponseEntity.status(HttpStatus.OK).build();
     }
