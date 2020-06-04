@@ -1,6 +1,7 @@
 package com.db.tradestorage;
 
 import com.db.tradestorage.controller.TradeController;
+import com.db.tradestorage.exception.InvalidTradeException;
 import com.db.tradestorage.model.Trade;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,9 +37,12 @@ public class TradestorageApplicationTests {
 
 	@Test
 	void testTradeValidateAndStoreWhenMaturityDatePast() {
-		LocalDate localDate = getLocalDate(2015,05,21);
-		ResponseEntity responseEntity = tradeController.tradeValidateStore(createTrade("T2",1,localDate));
-		Assertions.assertEquals(ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build(),responseEntity);
+		try {
+			LocalDate localDate = getLocalDate(2015, 05, 21);
+			ResponseEntity responseEntity = tradeController.tradeValidateStore(createTrade("T2", 1, localDate));
+		}catch (InvalidTradeException ie) {
+			Assertions.assertEquals("Invalid Trade: T2  Trade Id is not found", ie.getMessage());
+		}
 	}
 
 	@Test
@@ -53,8 +57,14 @@ public class TradestorageApplicationTests {
 		Assertions.assertEquals("T1B1",tradeList.get(0).getBookId());
 
 		//step-2 create trade with old version
-		ResponseEntity responseEntity1 = tradeController.tradeValidateStore(createTrade("T1",1,LocalDate.now()));
-		Assertions.assertEquals(ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build(),responseEntity1,"T1  Trade Id is not found");
+		try {
+			ResponseEntity responseEntity1 = tradeController.tradeValidateStore(createTrade("T1", 1, LocalDate.now()));
+
+
+		}catch (InvalidTradeException e){
+			System.out.println(e.getId());
+			System.out.println(e.getMessage());
+		}
 		List<Trade> tradeList1 =tradeController.findAllTrades();
 		Assertions.assertEquals(1, tradeList1.size());
 		Assertions.assertEquals("T1",tradeList1.get(0).getTradeId());
