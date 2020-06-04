@@ -54,7 +54,7 @@ public class TradestorageApplicationTests {
 
 		//step-2 create trade with old version
 		ResponseEntity responseEntity1 = tradeController.tradeValidateStore(createTrade("T1",1,LocalDate.now()));
-		Assertions.assertEquals(ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build(),responseEntity1);
+		Assertions.assertEquals(ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build(),responseEntity1,"T1  Trade Id is not found");
 		List<Trade> tradeList1 =tradeController.findAllTrades();
 		Assertions.assertEquals(1, tradeList1.size());
 		Assertions.assertEquals("T1",tradeList1.get(0).getTradeId());

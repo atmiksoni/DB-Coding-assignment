@@ -1,9 +1,14 @@
 package com.db.tradestorage.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDate;
-
+@Entity
+@Table(name = "Trades")
 public class Trade {
 
+    @Id
     private String tradeId;
 
     private int version;
